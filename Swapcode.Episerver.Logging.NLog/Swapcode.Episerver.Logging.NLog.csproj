@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <Authors>Antti Alasvuo</Authors>
+    <Company>Private person</Company>
+    <Description>Replaces Episerver default log4net (https://logging.apache.org/log4net/) logging framework with NLog (http://nlog-project.org/). This package uses the Episerver supported way of replacing the logging framework described in https://world.episerver.com/documentation/developer-guides/CMS/logging/ (see the topic Implementing the API and the LoggerFactory assembly attribute).</Description>
+    <Copyright>Antti Alasvuo ©2018</Copyright>
+    <PackageReleaseNotes>This is the initial release.</PackageReleaseNotes>
+    <PackageTags>Logging</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPiServer.Framework" Version="[11.1.0,12.0)" />
+    <PackageReference Include="NLog" Version="[4.4.12,4.5)" />
+    <PackageReference Include="NLog.Web" Version="[4.5.1,4.6)" />
+  </ItemGroup>
+
+</Project>

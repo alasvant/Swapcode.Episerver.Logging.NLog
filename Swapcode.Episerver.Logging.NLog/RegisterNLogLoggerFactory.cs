@@ -1,0 +1,2 @@
+﻿// Register NLog as Episerver logger factory, https://world.episerver.com/documentation/developer-guides/CMS/logging/
+[assembly: EPiServer.Logging.LoggerFactory(typeof(Swapcode.Episerver.Logging.NLog.NLogLoggerFactory))]
