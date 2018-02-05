@@ -8,6 +8,8 @@
     <Copyright>Antti Alasvuo ©2018</Copyright>
     <PackageReleaseNotes>This is the initial release.</PackageReleaseNotes>
     <PackageTags>Logging</PackageTags>
+    <PackageProjectUrl>https://github.com/alasvant/Swapcode.Episerver.Logging.NLog</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/alasvant/Swapcode.Episerver.Logging.NLog/blob/master/LICENSE.md</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
