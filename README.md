@@ -79,6 +79,22 @@ Install doesn't include NLog configuration file which is described [here](https:
 </nlog>
 ```
 
-# TODO
-- [x] Better instructions
-- [ ] NLog configuration sample
+# Log from application
+- use Episerver LogManager (EPiServer.Logging.LogManager)
+  - using statement `using EPiServer.Logging;`
+  - logger `private static readonly ILogger logger = LogManager.GetLogger(typeof(SearchPageController));`
+
+```
+logger.Warning("Demo WARNING message.");
+logger.Warning("Demo WARNING message with argument: {0}", DateTime.Now);
+logger.Error("Demo error message with exception.", ex);
+```
+
+# Sample JSON log entries
+```
+{ "time": "2018-02-06 22:59:29.4227", "level": "WARN", "logger": "EpiElevenWebsite.Controllers.SearchPageController", "controller": "SearchPage", "action": "index", "request-method": "GET", "request-url": "http:\/\/localhost\/en\/search\/?q=bear", "message": "Demo WARNING message." }
+
+{ "time": "2018-02-06 22:59:29.4227", "level": "WARN", "logger": "EpiElevenWebsite.Controllers.SearchPageController", "controller": "SearchPage", "action": "index", "request-method": "GET", "request-url": "http:\/\/localhost\/en\/search\/?q=bear", "message": "Demo WARNING message with argument: 02\/06\/2018 22:59:29" }
+
+{ "time": "2018-02-06 22:59:29.4574", "level": "ERROR", "logger": "EpiElevenWebsite.Controllers.SearchPageController", "controller": "SearchPage", "action": "index", "request-method": "GET", "request-url": "http:\/\/localhost\/en\/search\/?q=bear", "message": "Demo error message with exception.\r\nSystem.ApplicationException: ApplicationException demo message.\r\n   at EpiElevenWebsite.Controllers.SearchPageController.Index(SearchPage currentPage, String q) in X:\\MyPath\\Alloy\\EpiElevenWebsite\\Controllers\\SearchPageController.cs:line 81", "exception": "ApplicationException demo message." }
+```
