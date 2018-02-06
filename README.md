@@ -24,6 +24,60 @@ Install doesn't include NLog configuration file which is described [here](https:
   - I would say that the most common name is `NLog.config` and placed to the web application root (same place where you have your `web.config`)
 
 # Sample NLog.config
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      autoReload="true"
+      internalLogFile="[PUT-YOUR-ABSOLUTE-PATH-HERE]\nlog-internal-log.txt"
+      internalLogLevel="Info"
+      internalLogToTrace="false">
+    <!-- NOTE: internalLogFile needs to be absolute path  -->
+    <!-- NLog internal logging on just for demo purposes -->
+    
+    <!-- set the log and archive directory with variables, NOTE: file target by default creates the directory if it doesn't exist -->
+    <variable name="logDir" value="App_Data\Logs" />
+    <variable name="logArchiveDir" value="App_Data\LogsArchive" />
+    <!-- NOTE: DO NOT USE App_Data folder in production or other similiar environments! Only in development. You were warned. -->
+
+    <targets>
+        <!-- Just a silly sample for archiving, archiveEveryMinute used just for demo purposes -->
+        <target name="logfile" xsi:type="File" fileName="${logDir}\EpiAppLog.log"
+                archiveFileName="${logArchiveDir}\EpiAppLog.{##}.log"
+                archiveEvery="Minute"
+                archiveNumbering="Sequence"
+                maxArchiveFiles="15"/>
+        
+        <!-- JSON layout sample -->
+        <target xsi:type="File" name="jsonfile" fileName="${logDir}\EpiAppJsonLog.json"
+                archiveFileName="${logArchiveDir}\EpiAppJsonLog.{##}.json"
+                archiveEvery="Minute"
+                archiveNumbering="Sequence"
+                maxArchiveFiles="15">
+            <layout xsi:type="JsonLayout">
+                <attribute name="time" layout="${longdate}" />
+                <attribute name="level" layout="${level:upperCase=true}"/>
+                <attribute name="logger" layout="${logger}"/>
+                <attribute name="controller" layout="${aspnet-mvc-controller}" />
+                <attribute name="action" layout="${aspnet-mvc-action}" />
+                <attribute name="request-method" layout="${aspnet-request-method}" />
+                <attribute name="request-url" layout="${aspnet-request-url:IncludeQueryString=true}" />
+                <attribute name="message" layout="${message}" />
+                <attribute name="exception" layout="${exception}" />
+            </layout>
+        </target>
+    </targets>
+
+    <rules>
+        <!-- write all warnings and above -->
+        <logger name="*" minlevel="Warn" writeTo="jsonfile" />
+        <logger name="*" minlevel="Warn" writeTo="logfile" final="true"/>
+        
+        <!-- write everything from the app -->
+        <logger name="EpiElevenWebsite*" minlevel="Trace" writeTo="jsonfile" />
+        <logger name="EpiElevenWebsite*" minlevel="Trace" writeTo="logfile" final="true" />
+    </rules>
+</nlog>
+```
 
 # TODO
 - [x] Better instructions
