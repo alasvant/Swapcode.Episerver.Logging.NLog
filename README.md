@@ -33,6 +33,11 @@ Install doesn't include NLog configuration file which is described [here](https:
   - I would say that the most common name is `NLog.config` and placed to the web application root (same place where you have your `web.config`)
 
 # Sample NLog.config
+
+This is just a sample NLog.config and you should read the NLog documentation for proper settings.
+
+For better performance you could add `keepFileOpen="true" concurrentWrites="false" openFileCacheTimeout="30"` attributes to all the `target`elements to improve the logging performance in high load (many request in second).
+
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
