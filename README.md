@@ -14,7 +14,7 @@ Available for Episerver 11.x, EPiServer.Framework (>= 11.1.0 && < 12.0.0). Most 
 Primary install location from [Episerver NuGet feed](http://nuget.episerver.com/en/OtherPages/Package/?packageId=Swapcode.Episerver.Logging.NLog)
 - Episerver NuGet feed: `http://nuget.episerver.com/feed/packages.svc/`
 
-You need to add my public MyGet feed to Visual Studio package sources:
+Secondary location add my public MyGet feed to Visual Studio package sources:
 - NuGet v3 (VS2015+): `https://www.myget.org/F/swapcode-episerver/api/v3/index.json`
 - NuGet v2 (VS2012+): `https://www.myget.org/F/swapcode-episerver/api/v2`
 
